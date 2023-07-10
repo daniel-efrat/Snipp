@@ -12,12 +12,16 @@ import {
 import { Link } from "react-router-dom"
 import ReactSelect from "react-select"
 import { Tag } from "./App"
-import styles from "./NoteList.module.css"
-
+import styles from "./styles/NoteList.css"
+import ReactMarkdown from "react-markdown"
+import { FiEdit, FiCopy, FiSave, FiTrash2 } from "react-icons/fi"
+import { AiOutlineTags, AiOutlinePlus } from "react-icons/Ai"
+import Top from "./Top"
 type SimplifiedNote = {
   tags: Tag[]
   title: string
   id: string
+  markdown: string
 }
 
 type NoteListProps = {
@@ -45,6 +49,7 @@ export function NoteList({
   const [title, setTitle] = useState("")
   const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false)
 
+
   const filteredNotes = useMemo(() => {
     return notes.filter(note => {
       return (
@@ -62,47 +67,55 @@ export function NoteList({
     <>
       <Row className="align-items-center mb-4">
         <Col>
-          <h1>Notes</h1>
+          <h1>סְנִיפֶּטְס</h1>
         </Col>
+
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
             <Link to="/new">
-              <Button variant="primary">Create</Button>
+              <Button variant="primary">
+                <AiOutlinePlus />
+              </Button>
             </Link>
             <Button
               onClick={() => setEditTagsModalIsOpen(true)}
               variant="outline-secondary"
             >
-              Edit Tags
+              <AiOutlineTags />
             </Button>
           </Stack>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Top />
         </Col>
       </Row>
       <Form>
         <Row className="mb-4">
           <Col>
             <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>חיפוש טקסט</Form.Label>
               <Form.Control
                 type="text"
                 value={title}
-                onChange={e => setTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="tags">
-              <Form.Label>Tags</Form.Label>
+              <Form.Label>חיפוש תגיות</Form.Label>
               <ReactSelect
-                value={selectedTags.map(tag => {
+                value={selectedTags.map((tag) => {
                   return { label: tag.label, value: tag.id }
                 })}
-                options={availableTags.map(tag => {
+                options={availableTags.map((tag) => {
                   return { label: tag.label, value: tag.id }
                 })}
-                onChange={tags => {
+                onChange={(tags) => {
                   setSelectedTags(
-                    tags.map(tag => {
+                    tags.map((tag) => {
                       return { label: tag.label, id: tag.value }
                     })
                   )
@@ -114,9 +127,14 @@ export function NoteList({
         </Row>
       </Form>
       <Row xs={1} sm={2} lg={3} xl={4} className="g-3">
-        {filteredNotes.map(note => (
+        {filteredNotes.map((note) => (
           <Col key={note.id}>
-            <NoteCard id={note.id} title={note.title} tags={note.tags} />
+            <NoteCard
+              id={note.id}
+              title={note.title}
+              tags={note.tags}
+              markdown={note.markdown}
+            />
           </Col>
         ))}
       </Row>
@@ -131,17 +149,19 @@ export function NoteList({
   )
 }
 
-function NoteCard({ id, title, tags }: SimplifiedNote) {
+function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(markdown).then(() => {
+      console.log("Markdown text copied to clipboard")
+    })
+  }
+
   return (
-    <Card
-      as={Link}
-      to={`/${id}`}
-      className={`h-100 text-reset text-decoration-none ${styles.card}`}
-    >
+    <Card className={`h-100 text-reset text-decoration-none ${styles.card}`}>
       <Card.Body>
         <Stack
           gap={2}
-          className="align-items-center justify-content-center h-100"
+          className="align-items-center justify-content-between h-100"
         >
           <span className="fs-5">{title}</span>
           {tags.length > 0 && (
@@ -150,19 +170,31 @@ function NoteCard({ id, title, tags }: SimplifiedNote) {
               direction="horizontal"
               className="justify-content-center flex-wrap"
             >
-              {tags.map(tag => (
+              {tags.map((tag) => (
                 <Badge className="text-truncate" key={tag.id}>
                   {tag.label}
                 </Badge>
               ))}
             </Stack>
           )}
+          <div className="note-content">
+            <ReactMarkdown>{markdown}</ReactMarkdown>
+          </div>
+          <Stack direction="horizontal" gap={2}>
+            {/* Edit button */}
+            <Link to={`/${id}`}>
+              <Button variant="primary"><FiEdit/></Button>
+            </Link>
+            {/* Copy button */}
+            <Button variant="secondary" onClick={handleCopyClick}>
+              <FiCopy />
+            </Button>
+          </Stack>
         </Stack>
       </Card.Body>
     </Card>
   )
 }
-
 function EditTagsModal({
   availableTags,
   handleClose,
@@ -173,7 +205,7 @@ function EditTagsModal({
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Tags</Modal.Title>
+        <Modal.Title><AiOutlineTags/></Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -190,9 +222,9 @@ function EditTagsModal({
                 <Col xs="auto">
                   <Button
                     onClick={() => onDeleteTag(tag.id)}
-                    variant="outline-danger"
+                    variant="danger"
                   >
-                    &times;
+                    <FiTrash2/>
                   </Button>
                 </Col>
               </Row>

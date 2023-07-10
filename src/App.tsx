@@ -9,6 +9,7 @@ import { NoteList } from "./NoteList"
 import { NoteLayout } from "./NoteLayout"
 import { Note } from "./Note"
 import { EditNote } from "./EditNote"
+import  "./styles/main.css"
 
 export type Note = {
   id: string
@@ -95,7 +96,7 @@ function App() {
   }
 
   return (
-    <Container className="my-4">
+    <Container className="my-4 wrap">
       <Routes>
         <Route
           path="/"

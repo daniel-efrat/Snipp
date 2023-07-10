@@ -1,0 +1,17 @@
+.note-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: calc(1.5em * 5); /* 1.5 is the line-height, 5 is the number of lines you want to display */
+}
+
+.card {
+  transition: translate ease-in-out 100ms, box-shadow ease-in-out 100ms;
+}
+
+.card:hover,
+.card:focus {
+  translate: 0 -5px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2);
+}

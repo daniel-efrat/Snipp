@@ -1,0 +1,14 @@
+.card {
+    border: none!important
+
+}
+
+.copyBtn {
+    background: blue;
+    border: none!important
+
+}
+.copyBtn:hover {
+    background: rgb(255, 206, 214)!important;
+    border: none!important
+}

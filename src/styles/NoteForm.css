@@ -1,0 +1,38 @@
+.btn:hover {
+  box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.4),
+    -4px -4px 10px rgba(255, 255, 255, 0.305);
+}
+.btn:active {
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.236),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.305);
+}
+.on {
+  background: #c3841e;
+  color: rgb(225, 224, 224);
+  border: 1px white solid;
+}
+.form-control {
+  border-radius:0px!important;
+}
+.editor {
+  min-height: 60vh;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.482);
+  min-width: 70vw;
+  max-width: 98vw;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+}
+.rtl {
+  direction: rtl;
+}
+@media (max-width: 500px) {
+  .editor {
+    width: 100vw;
+    margin-top: -1rem;
+    padding-bottom: 60px;
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}

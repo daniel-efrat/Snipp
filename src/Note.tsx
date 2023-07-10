@@ -2,6 +2,8 @@ import { Badge, Button, Col, Row, Stack } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { useNote } from "./NoteLayout"
 import ReactMarkdown from "react-markdown"
+import { FiEdit, FiTrash2 } from "react-icons/fi"
+import { AiOutlineRollback } from "react-icons/Ai"
 
 type NoteProps = {
   onDelete: (id: string) => void
@@ -18,7 +20,7 @@ export function Note({ onDelete }: NoteProps) {
           <h1>{note.title}</h1>
           {note.tags.length > 0 && (
             <Stack gap={1} direction="horizontal" className="flex-wrap">
-              {note.tags.map(tag => (
+              {note.tags.map((tag) => (
                 <Badge className="text-truncate" key={tag.id}>
                   {tag.label}
                 </Badge>
@@ -29,19 +31,19 @@ export function Note({ onDelete }: NoteProps) {
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
             <Link to={`/${note.id}/edit`}>
-              <Button variant="primary">Edit</Button>
+              <Button variant="primary"><FiEdit/></Button>
             </Link>
             <Button
               onClick={() => {
                 onDelete(note.id)
                 navigate("/")
               }}
-              variant="outline-danger"
+              variant="danger"
             >
-              Delete
+              <FiTrash2/>
             </Button>
             <Link to="/">
-              <Button variant="outline-secondary">Back</Button>
+              <Button variant="outline-secondary"><AiOutlineRollback/></Button>
             </Link>
           </Stack>
         </Col>
