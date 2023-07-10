@@ -1,4 +1,11 @@
 import Link from "next/link"
+interface FormProps {
+  type: string
+  post: string
+  setPost: React.Dispatch<React.SetStateAction<string>>
+  submitting: boolean
+  handleSubmit: () => void
+}
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
@@ -42,8 +49,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
         <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className="text-gray-500 text-sm">
-            Cancel
+          <Link href="/">
+            <a className="text-gray-500 text-sm">Cancel</a> 
           </Link>
           <button
             type="submit"
