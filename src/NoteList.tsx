@@ -169,7 +169,7 @@ function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
   }
 
   return (
-    <Card className={`h-100 text-reset text-decoration-none ${styles.card}`}>
+    <Card className={`h-100 text-reset text-decoration-none card`}>
       <Card.Body>
         <Stack
           gap={2}
