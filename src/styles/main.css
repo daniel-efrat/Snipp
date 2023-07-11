@@ -1,4 +1,57 @@
 body{
     background: url('../assets/bg.png');
-    font-weight: 400
+    font-family: "Noto Sans Hebrew";
+    font-weight: 300;
+}
+
+button {
+  --bs-btn-border-radius:none;
+  box-shadow:2px 2px 2px rgb(0,0,0,0.3)
+}
+button:hover {
+  box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.4),
+    -4px -4px 10px rgba(255, 255, 255, 0.305);
+}
+button:active {
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.236),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.305);
+}
+
+.primary {
+  background: orange;
+  border:none;
+  padding: 0.25rem;
+}
+.primary:hover {
+  background: rgb(246, 203, 122);
+  border:none
+}
+
+.secondary {
+  background: green;
+  border:none;
+  padding: 0.25rem;
+}
+.secondary:hover {
+  background: rgb(1, 214, 1);
+  border:none
+}
+.danger {
+  background: red;
+  border:none;
+  padding: 0.25rem;
+}
+.danger:hover {
+  background: rgb(247, 91, 91);
+  border:none
+}
+
+.outline-secondary {
+  background: teal;
+  border:none;
+  padding: 0.25rem;
+}
+.outline-secondary:hover {
+  background: rgb(73, 204, 204);
+  border:none
 }

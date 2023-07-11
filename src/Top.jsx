@@ -13,50 +13,39 @@ const Top = () => {
   const [clientName, setClientName] = useState("")
   const [caseId, setCaseId] = useState("")
   const [issue, setIssue] = useState("")
-  const [isMaleVisible, setIsMaleVisible] = useState(true)
+  const [isClientMale, setIsClientMale] = useState(true)
   const [isAgentMale, setIsAgentMale] = useState(true)
   const [isAgentFemale, setIsAgentFemale] = useState(false)
-  const [isFemaleVisible, setIsFemaleVisible] = useState(false)
+  const [isClientFemale, setIsClientFemale] = useState(false)
 
-  const maleBtnRef = useRef(null)
-  const femaleBtnRef = useRef(null)
+  const clientMaleBtnRef = useRef(null)
+  const clientFemaleBtnRef = useRef(null)
   const agentMaleBtnRef = useRef(null)
   const agentFemaleBtnRef = useRef(null)
 
-  const showMale = () => {
-    setIsMaleVisible(true)
-    setIsFemaleVisible(false)
-    maleBtnRef.current.classList.add("active")
-    femaleBtnRef.current.classList.remove("active")
+  const clientMale = () => {
+    setIsClientMale(true)
+    setIsClientFemale(false)
   }
   const agentMale = () => {
     setIsAgentMale(true)
     setIsAgentFemale(false)
-    agentMaleBtnRef.current.classList.add("active")
-    agentFemaleBtnRef.current.classList.remove("active")
   }
   const agentFemale = () => {
     setIsAgentFemale(true)
     setIsAgentMale(false)
-    agentFemaleBtnRef.current.classList.add("active")
-    agentMaleBtnRef.current.classList.remove("active")
   }
 
-  const showFemale = () => {
-    setIsMaleVisible(false)
-    setIsFemaleVisible(true)
-    femaleBtnRef.current.classList.add("active")
-    maleBtnRef.current.classList.remove("active")
+  const clientFemale = () => {
+    setIsClientMale(false)
+    setIsClientFemale(true)
   }
 
   return (
     <div dir="rtl" className="relative">
-      {isAgentMale && <div className="top"></div>}
-      {isAgentFemale && (
-        <div className="top-0 h-32 -mb-32 border-8 border-pink-200 bg"></div>
-      )}
+    
       <div className="topFormInner">
-        <div className="h-full flex flex-col mt-2 mb-12">
+        <div className="mt-2 icons">
           <div className="iconsAgent">
             <div
               onClick={agentMale}
@@ -75,7 +64,7 @@ const Top = () => {
             <div
               onClick={agentFemale}
               ref={agentFemaleBtnRef}
-              className={`${styles.icon} icon woman bg-pink-300`}
+              className={`${styles.icon} icon woman`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +76,10 @@ const Top = () => {
               </svg>
             </div>
           </div>
-          <div className="flex items-center justify-between iconsClient mt-3">
+          <div className="iconsClient mt-3">
             <div
-              onClick={showMale}
-              ref={maleBtnRef}
+              onClick={clientMale}
+              ref={clientMaleBtnRef}
               className={`${styles.icon} icon man`}
             >
               <svg
@@ -103,8 +92,8 @@ const Top = () => {
               </svg>
             </div>
             <div
-              onClick={showFemale}
-              ref={femaleBtnRef}
+              onClick={clientFemale}
+              ref={clientFemaleBtnRef}
               className={`${styles.icon} icon woman`}
             >
               <svg
@@ -118,8 +107,8 @@ const Top = () => {
             </div>
           </div>
         </div>
-        <div className=" agent client">
-          <div className="flex justify-between gap-2 p-4">
+        <div className="names">
+          <div className="p-4 agentName">
             <label htmlFor="agentName">
               {isAgentMale ? "שם הנציג: " : "שם הנציגה: "}
             </label>
@@ -131,9 +120,9 @@ const Top = () => {
               className="mx-2"
             />
           </div>
-          <div className="flex justify-between gap-2 p-4">
+          <div className="p-4 clientName">
             <label htmlFor="client">
-              {isMaleVisible ? "שם הלקוח: " : "שם הלקוחה: "}
+              {isClientMale ? "שם הלקוח: " : "שם הלקוחה: "}
             </label>
             <input
               value={clientName}
@@ -145,8 +134,8 @@ const Top = () => {
           </div>
         </div>
 
-        <div className="">
-          <div className="flex justify-between gap-2 p-4">
+        <div className="case">
+          <div className="p-4 caseNumber">
             <label htmlFor="caseId">מספר הפנייה: </label>
             <input
               value={caseId}
@@ -156,19 +145,19 @@ const Top = () => {
               className="mx-2"
             />
           </div>
-          <div className="flex justify-between p-4">
-            <label htmlFor="caseId">סיבת הפנייה: </label>
+          <div className="caseIssue p-4">
+            <label htmlFor="issue">סיבת הפנייה: </label>
             <input
               value={issue}
               onChange={(e) => setIssue(e.target.value)}
-              name="caseId"
+              name="issue"
               type="text"
               className="mx-2"
             />
           </div>
         </div>
       </div>
-      {isMaleVisible && isAgentMale && (
+      {isClientMale && isAgentMale && (
         <MM
           name={clientName}
           caseId={caseId}
@@ -176,7 +165,7 @@ const Top = () => {
           agentName={agentName}
         />
       )}
-      {isFemaleVisible && isAgentMale && (
+      {isClientFemale && isAgentMale && (
         <MF
           name={clientName}
           caseId={caseId}
@@ -184,7 +173,7 @@ const Top = () => {
           agentName={agentName}
         />
       )}
-      {isMaleVisible && isAgentFemale && (
+      {isClientMale && isAgentFemale && (
         <FM
           name={clientName}
           caseId={caseId}
@@ -192,7 +181,7 @@ const Top = () => {
           agentName={agentName}
         />
       )}
-      {isFemaleVisible && isAgentFemale && (
+      {isClientFemale && isAgentFemale && (
         <FF
           name={clientName}
           caseId={caseId}

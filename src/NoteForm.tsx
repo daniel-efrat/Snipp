@@ -1,5 +1,5 @@
 import React, { FormEvent, useRef, useState, useEffect } from "react"
-import { Button, Col, Form, Row, Stack } from "react-bootstrap"
+import { Col, Form, Row, Stack } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import CreatableReactSelect from "react-select/creatable"
 import { NoteData, Tag } from "./App"
@@ -8,7 +8,6 @@ import Editor from "@toast-ui/editor"
 import "@toast-ui/editor/dist/toastui-editor.css"
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css"
 import "./styles/NoteForm.css"
-import { AiOutlineRollback, AiOutlineSave } from "react-icons/Ai"
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void
@@ -107,13 +106,31 @@ export function NoteForm({
         <div ref={editorRef} className="editor rtl" id="editor"></div>
 
         <Stack direction="horizontal" gap={2} className="justify-content-end">
-          <Button type="submit" variant="primary">
-            <AiOutlineSave />
-          </Button>
+          <button type="submit" className="primary">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 0 24 24"
+              width="24px"
+              fill="#000000"
+            >
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z" />
+            </svg>
+          </button>
           <Link to="..">
-            <Button type="button" variant="outline-secondary">
-              <AiOutlineRollback />
-            </Button>
+            <button type="button" className="outline-secondary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#fff"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z" />
+              </svg>{" "}
+            </button>
           </Link>
         </Stack>
       </Stack>

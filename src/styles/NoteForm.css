@@ -1,11 +1,5 @@
-.btn:hover {
-  box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.4),
-    -4px -4px 10px rgba(255, 255, 255, 0.305);
-}
-.btn:active {
-  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.236),
-    inset -4px -4px 10px rgba(255, 255, 255, 0.305);
-}
+
+
 .on {
   background: #c3841e;
   color: rgb(225, 224, 224);

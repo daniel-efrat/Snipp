@@ -1,14 +1,17 @@
-.card {
-    border: none!important
+.boxi {
+background:#bebeff;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+.blueBtn {
+    background:#7f7ffb;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border:none
 
 }
-
-.copyBtn {
-    background: blue;
-    border: none!important
-
-}
-.copyBtn:hover {
-    background: rgb(255, 206, 214)!important;
-    border: none!important
+.blueBtn:hover {
+    background: #5c5cb4
+   
 }

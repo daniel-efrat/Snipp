@@ -15,3 +15,18 @@
   translate: 0 -5px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2);
 }
+
+.cardBtns {
+  display: flex;
+  gap:5px;
+  width: 100%;
+
+}
+.editBtn {
+  /* flex:0 */
+  width: 20%;
+}
+.copyBttn {
+  /* flex-grow:1; */
+  width: 80%;
+}

@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  src: local('Noto Sans Hebrew'), url(./fonts/NotoSansHebrew-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  src: local('Noto Sans Hebrew'), url(./fonts/NotoSansHebrew-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  src: local('Noto Sans Hebrew'), url(./fonts/NotoSansHebrew-ExtraBold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  src: local('Noto Sans Hebrew'), url(./fonts/NotoSansHebrew-Black.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Hebrew';
+  src: local('Noto Sans Hebrew'), url(./fonts/NotoSansHebrew-Light.ttf) format('truetype');
+}
+
+body{
+    background: url('../assets/bg.png');
+    font-family: "Noto Sans Hebrew";
+    font-weight: 300;
+}

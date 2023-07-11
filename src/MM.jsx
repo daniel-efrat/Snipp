@@ -1,7 +1,5 @@
-import { Card, Button } from "react-bootstrap"
 import React, { useState, useMemo } from "react"
 import "./styles/mm.css"
-import { FiEdit, FiCopy, FiSave, FiTrash2 } from "react-icons/fi"
 
 const MM = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
@@ -58,21 +56,30 @@ const MM = ({ name, agentName, caseId, issue }) => {
       <div className="d-flex w-100 p-6">
         {/* Loop through filtered text snippets */}
         {filteredSnippets.map((snippet, index) => (
-          <Card
+          <div
             key={index}
-            className="d-flex flex-column w-25 p-2 m-2 text-right min-h-230 card"
+            className="d-flex flex-column w-25 p-2 m-2 text-right min-h-230 boxi"
             style={{ minHeight: "230px", wordWrap: "break-word" }}
           >
-            <Card.Body>
+            <div className="box-body">
               <div dangerouslySetInnerHTML={{ __html: snippet.content }} />
-            </Card.Body>
-            <Button
+            </div>
+            <button
               onClick={() => copyToClipboard(snippet.content)}
-              className="mt-4 text-white copyBtn"
+              className="mt-4 copyBtn blueBtn"
             >
-              <FiCopy />
-            </Button>
-          </Card>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#ffffff"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+              </svg>
+            </button>
+          </div>
         ))}
       </div>
     </div>
