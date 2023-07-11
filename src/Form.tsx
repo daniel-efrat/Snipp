@@ -1,4 +1,4 @@
-import Link from "next/link"
+import { Link } from "react-router-dom"
 
 interface Post {
   snippet: string
@@ -12,22 +12,28 @@ interface FormProps {
   handleSubmit: () => void
 }
 
-const Form: React.FC<FormProps> = ({ type, post, setPost, submitting, handleSubmit }) => {
+const Form: React.FC<FormProps> = ({
+  type,
+  post,
+  setPost,
+  submitting,
+  handleSubmit,
+}) => {
   return (
-    <section className="w-full max-w-full flex-center flex-col">
-      <h1 className="head_text text-left">
+    <section className="flex-col w-full max-w-full flex-center">
+      <h1 className="text-left head_text">
         <span className="blue_gradient">{type} Post</span>
       </h1>
-      <p className="desc text-left max-w-md">
+      <p className="max-w-md text-left desc">
         {type} and share amazing snippets with the world, and left your
         imagination run wild with any AI-powered platform.
       </p>
       <form
         onSubmit={handleSubmit}
-        className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
+        className="flex flex-col w-full max-w-2xl mt-10 gap-7 glassmorphism"
       >
         <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
+          <span className="text-base font-semibold text-gray-700 font-satoshi">
             Your AI Snippet
           </span>
           <textarea
@@ -39,7 +45,7 @@ const Form: React.FC<FormProps> = ({ type, post, setPost, submitting, handleSubm
           />
         </label>
         <label>
-          <span className="font-satoshi font-semibold text-base text-gray-700">
+          <span className="text-base font-semibold text-gray-700 font-satoshi">
             Tag {` `}
             <span className="font-normal">
               (#product, #webdevelopment, #idea)
@@ -53,9 +59,9 @@ const Form: React.FC<FormProps> = ({ type, post, setPost, submitting, handleSubm
             className="form_input"
           />
         </label>
-        <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/">
-            <a className="text-gray-500 text-sm">Cancel</a> 
+        <div className="gap-4 mx-3 mb-5 flex-end">
+          <Link className="text-sm text-gray-500" to="/">
+           Cancel
           </Link>
           <button
             type="submit"
