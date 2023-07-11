@@ -1,4 +1,9 @@
 import Link from "next/link"
+
+interface Post {
+  snippet: string
+  tag: string
+}
 interface FormProps {
   type: string
   post: string
@@ -6,6 +11,7 @@ interface FormProps {
   submitting: boolean
   handleSubmit: () => void
 }
+
 
 const Form: React.FC<FormProps> = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (

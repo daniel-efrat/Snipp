@@ -43,15 +43,10 @@ const Top = () => {
 
   return (
     <div dir="rtl" className="relative">
-    
       <div className="topFormInner">
         <div className="mt-2 icons">
           <div className="iconsAgent">
-            <div
-              onClick={agentMale}
-              ref={agentMaleBtnRef}
-              className={`${styles.icon} icon man`}
-            >
+            <div onClick={agentMale} ref={agentMaleBtnRef} className="icon man">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="32"
@@ -64,7 +59,7 @@ const Top = () => {
             <div
               onClick={agentFemale}
               ref={agentFemaleBtnRef}
-              className={`${styles.icon} icon woman`}
+              className="icon woman"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +75,7 @@ const Top = () => {
             <div
               onClick={clientMale}
               ref={clientMaleBtnRef}
-              className={`${styles.icon} icon man`}
+              className="icon man"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +89,7 @@ const Top = () => {
             <div
               onClick={clientFemale}
               ref={clientFemaleBtnRef}
-              className={`${styles.icon} icon woman`}
+              className="icon woman"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
