@@ -1,7 +1,12 @@
 import React, { useState, useMemo } from "react"
 import "./styles/ff.css"
-
-const FF = ({ name, agentName, caseId, issue }) => {
+interface FFProps {
+  name: string
+  agentName: string
+  caseId: string
+  issue: string
+}
+const FF: React.FC<FFProps> = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
 
   const snippets = useMemo(
@@ -32,7 +37,7 @@ const FF = ({ name, agentName, caseId, issue }) => {
     snippet.content.toLowerCase().includes(searchText.toLowerCase())
   )
 
-  const copyToClipboard = (content) => {
+  const copyToClipboard = (content: string) => {
     const el = document.createElement("textarea")
     el.value = content
     document.body.appendChild(el)

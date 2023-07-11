@@ -6,12 +6,11 @@ interface Post {
 }
 interface FormProps {
   type: string
-  post: string
-  setPost: React.Dispatch<React.SetStateAction<string>>
+  post: Post
+  setPost: React.Dispatch<React.SetStateAction<Post>>
   submitting: boolean
   handleSubmit: () => void
 }
-
 
 const Form: React.FC<FormProps> = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (

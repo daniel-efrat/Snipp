@@ -2,8 +2,13 @@
 "use client"
 import React, { useState, useMemo } from "react"
 import "./styles/mm.css"
-
-const FM = ({ name, agentName, caseId, issue }) => {
+interface FMProps {
+  name: string
+  agentName: string
+  caseId: string
+  issue: string
+}
+const FM: React.FC<FMProps> = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
 
   const snippets = useMemo(
@@ -34,7 +39,7 @@ const FM = ({ name, agentName, caseId, issue }) => {
     snippet.content.toLowerCase().includes(searchText.toLowerCase())
   )
 
-  const copyToClipboard = (content) => {
+  const copyToClipboard = (content: string) => {
     const el = document.createElement("textarea")
     el.value = content
     document.body.appendChild(el)

@@ -5,7 +5,7 @@ import MM from "./MM"
 import MF from "./MF"
 import FM from "./FM"
 import FF from "./FF"
-import styles from "./styles/Top.css"
+import "./styles/Top.css"
 import React, { useState, useRef } from "react"
 
 const Top = () => {
