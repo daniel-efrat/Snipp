@@ -13,8 +13,6 @@ import ReactSelect from "react-select"
 import { Tag } from "./App"
 import styles from "./styles/NoteList.css"
 import ReactMarkdown from "react-markdown"
-import { FiEdit, FiCopy, FiSave, FiTrash2 } from "react-icons/fi"
-import { AiOutlineTags, AiOutlinePlus } from "react-icons/Ai"
 import Top from "./Top"
 type SimplifiedNote = {
   tags: Tag[]
