@@ -8,6 +8,7 @@
 
 .card {
   transition: translate ease-in-out 100ms, box-shadow ease-in-out 100ms;
+  border-radius: 0;
 }
 
 .card:hover,
@@ -20,6 +21,7 @@
   display: flex;
   gap:5px;
   width: 100%;
+  justify-content: space-between;
 
 }
 .editBtn {
@@ -27,6 +29,5 @@
   width: 20%;
 }
 .copyBttn {
-  /* flex-grow:1; */
-  width: 80%;
+  width: 100%;
 }

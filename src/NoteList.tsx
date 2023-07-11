@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom"
 import ReactSelect from "react-select"
 import { Tag } from "./App"
-import styles from "./styles/NoteList.css"
+import "./styles/NoteList.css"
 import ReactMarkdown from "react-markdown"
 import Top from "./Top"
 type SimplifiedNote = {
@@ -61,7 +61,7 @@ export function NoteList({
 
   return (
     <>
-      <Row className="align-items-center mb-4">
+      <Row className="mb-4 align-items-center">
         <Col>
           <h1>סְנִיפֶּטְס</h1>
         </Col>
@@ -169,7 +169,7 @@ function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
   }
 
   return (
-    <Card className={`h-100 text-reset text-decoration-none card`}>
+    <div className="h-100 text-reset text-decoration-none card">
       <Card.Body>
         <Stack
           gap={2}
@@ -180,7 +180,7 @@ function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
             <Stack
               gap={1}
               direction="horizontal"
-              className="justify-content-center flex-wrap"
+              className="flex-wrap justify-content-center"
             >
               {tags.map((tag) => (
                 <Badge className="text-truncate" key={tag.id}>
@@ -228,7 +228,7 @@ function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
           </div>
         </Stack>
       </Card.Body>
-    </Card>
+    </div>
   )
 }
 function EditTagsModal({
