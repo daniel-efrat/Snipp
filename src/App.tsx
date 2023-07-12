@@ -9,6 +9,7 @@ import { NoteList } from "./NoteList"
 import { NoteLayout } from "./NoteLayout"
 import { Note } from "./Note"
 import { EditNote } from "./EditNote"
+import { Nav } from "./Nav"
 import  "./styles/main.css"
 
 export type Note = {

@@ -14,6 +14,7 @@ import { Tag } from "./App"
 import "./styles/NoteList.css"
 import ReactMarkdown from "react-markdown"
 import Top from "./Top"
+
 type SimplifiedNote = {
   tags: Tag[]
   title: string
@@ -63,7 +64,8 @@ export function NoteList({
     <>
       <Row className="mb-4 align-items-center">
         <Col>
-          <h1>סְנִיפֶּטְס</h1>
+          <h1 className="logo">קְווִיפֶּר</h1>
+          <img src="./assets/quipper-logo.png" alt="" />
         </Col>
 
         <Col xs="auto">
@@ -199,13 +201,16 @@ function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
                 <button className="primary">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    fill="#ffffff"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 15 15"
                   >
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                    <path
+                      fill="#FFF"
+                      fill-rule="evenodd"
+                      d="M7.5 11c-2.697 0-4.97-1.378-6.404-3.5C2.53 5.378 4.803 4 7.5 4s4.97 1.378 6.404 3.5C12.47 9.622 10.197 11 7.5 11Zm0-8C4.308 3 1.656 4.706.076 7.235a.5.5 0 0 0 0 .53C1.656 10.294 4.308 12 7.5 12s5.844-1.706 7.424-4.235a.5.5 0 0 0 0-.53C13.344 4.706 10.692 3 7.5 3Zm0 6.5a2 2 0 1 0 0-4a2 2 0 0 0 0 4Z"
+                      clip-rule="evenodd"
+                    />
                   </svg>
                 </button>
               </Link>
