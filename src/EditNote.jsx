@@ -1,14 +1,7 @@
-import { NoteData, Tag } from "./App"
 import { NoteForm } from "./NoteForm"
 import { useNote } from "./NoteLayout"
 
-type EditNoteProps = {
-  onSubmit: (id: string, data: NoteData) => void
-  onAddTag: (tag: Tag) => void
-  availableTags: Tag[]
-}
-
-export function EditNote({ onSubmit, onAddTag, availableTags }: EditNoteProps) {
+export function EditNote({ onSubmit, onAddTag, availableTags }) {
   const note = useNote()
   return (
     <>

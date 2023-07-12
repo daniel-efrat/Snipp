@@ -1,12 +1,7 @@
 import React, { useState, useMemo } from "react"
-import "./styles/ff.css"
-interface FFProps {
-  name: string
-  agentName: string
-  caseId: string
-  issue: string
-}
-const FF: React.FC<FFProps> = ({ name, agentName, caseId, issue }) => {
+import "./styles/mm.css"
+
+const FF = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
 
   const snippets = useMemo(
@@ -17,18 +12,18 @@ const FF: React.FC<FFProps> = ({ name, agentName, caseId, issue }) => {
                     היי ${name},
                     כאן ${agentName} מצוות התמיכה של מטא פרו.
                     מספר הפנייה שלך להמשך מעקב: ${caseId}.
-                    אני רואה שאת פונה אלינו בקשר ל${issue},
+                    אני רואה שאתה פונה אלינו בקשר ל${issue},
                     אשמח לבדוק את העניין בשבילך.
                 `,
       },
       {
-        content: "תוכלי בבקשה לומר לי מה מספר חשבון המודעות?",
+        content: "תוכל בבקשה לומר לי מה מספר חשבון המודעות?",
       },
       {
-        content: `תודה ${name}, ברשותך אקח כחמש דקות לבדוק את הפרטים מהצד שלי. מיד חוזרת!`,
+        content: `תודה ${name}, ברשותך אקח כחמש דקות לבדוק את הפרטים מהצד שלי. מיד חוזר!`,
       },
       {
-        content: `תודה על ההמתנה ${name}, האם את זמינה בטלפון ______?`,
+        content: `תודה על ההמתנה ${name}, האם אתה זמין בטלפון ______?`,
       },
     ],
     [name, caseId, issue, agentName]
@@ -37,7 +32,7 @@ const FF: React.FC<FFProps> = ({ name, agentName, caseId, issue }) => {
     snippet.content.toLowerCase().includes(searchText.toLowerCase())
   )
 
-  const copyToClipboard = (content: string) => {
+  const copyToClipboard = (content) => {
     const el = document.createElement("textarea")
     el.value = content
     document.body.appendChild(el)
@@ -49,21 +44,21 @@ const FF: React.FC<FFProps> = ({ name, agentName, caseId, issue }) => {
   return (
     <div>
       {/* Input for searching */}
-      <div className="w-250 m-auto">
+      <div className="m-auto w-250">
         <input
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
           placeholder="חיפוש..."
-          className="w-250 p-2 m-2 border search_input"
+          className="p-2 m-2 border w-250 search_input"
         />
       </div>
-      <div className="d-flex w-100 p-6">
+      <div className="p-6 d-flex w-100">
         {/* Loop through filtered text snippets */}
         {filteredSnippets.map((snippet, index) => (
           <div
             key={index}
-            className="d-flex flex-column w-25 p-2 m-2 text-right min-h-230 box"
+            className="p-2 m-2 text-right d-flex flex-column w-25 min-h-230 boxi"
             style={{ minHeight: "230px", wordWrap: "break-word" }}
           >
             <div className="box-body">
@@ -71,7 +66,7 @@ const FF: React.FC<FFProps> = ({ name, agentName, caseId, issue }) => {
             </div>
             <button
               onClick={() => copyToClipboard(snippet.content)}
-              className="mt-4 copyBtn pinkBtn"
+              className="mt-4 copyBtn blueBtn"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

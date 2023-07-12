@@ -1,14 +1,7 @@
-// Male.js
-"use client"
 import React, { useState, useMemo } from "react"
 import "./styles/mm.css"
-interface FMProps {
-  name: string
-  agentName: string
-  caseId: string
-  issue: string
-}
-const FM: React.FC<FMProps> = ({ name, agentName, caseId, issue }) => {
+
+const FF = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
 
   const snippets = useMemo(
@@ -39,7 +32,7 @@ const FM: React.FC<FMProps> = ({ name, agentName, caseId, issue }) => {
     snippet.content.toLowerCase().includes(searchText.toLowerCase())
   )
 
-  const copyToClipboard = (content: string) => {
+  const copyToClipboard = (content) => {
     const el = document.createElement("textarea")
     el.value = content
     document.body.appendChild(el)
@@ -51,21 +44,21 @@ const FM: React.FC<FMProps> = ({ name, agentName, caseId, issue }) => {
   return (
     <div>
       {/* Input for searching */}
-      <div className="w-250 m-auto">
+      <div className="m-auto w-250">
         <input
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           type="text"
           placeholder="חיפוש..."
-          className="w-250 p-2 m-2 border search_input"
+          className="p-2 m-2 border w-250 search_input"
         />
       </div>
-      <div className="d-flex   w-100 p-6">
+      <div className="p-6 d-flex w-100">
         {/* Loop through filtered text snippets */}
         {filteredSnippets.map((snippet, index) => (
           <div
             key={index}
-            className="d-flex flex-column w-25 p-2 m-2 text-right min-h-230 boxi"
+            className="p-2 m-2 text-right d-flex flex-column w-25 min-h-230 boxi"
             style={{ minHeight: "230px", wordWrap: "break-word" }}
           >
             <div className="box-body">
@@ -92,4 +85,5 @@ const FM: React.FC<FMProps> = ({ name, agentName, caseId, issue }) => {
     </div>
   )
 }
-export default FM
+
+export default FF

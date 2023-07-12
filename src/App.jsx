@@ -9,57 +9,35 @@ import { NoteList } from "./NoteList"
 import { NoteLayout } from "./NoteLayout"
 import { Note } from "./Note"
 import { EditNote } from "./EditNote"
-import  "./styles/main.css"
-
-export type Note = {
-  id: string
-} & NoteData
-
-export type RawNote = {
-  id: string
-} & RawNoteData
-
-export type RawNoteData = {
-  title: string
-  markdown: string
-  tagIds: string[]
-}
-
-export type NoteData = {
-  title: string
-  markdown: string
-  tags: Tag[]
-}
-
-export type Tag = {
-  id: string
-  label: string
-}
+import "./styles/main.css"
 
 function App() {
-  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", [])
-  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", [])
+  const [notes, setNotes] = useLocalStorage("NOTES", [])
+  const [tags, setTags] = useLocalStorage("TAGS", [])
 
   const notesWithTags = useMemo(() => {
-    return notes.map(note => {
-      return { ...note, tags: tags.filter(tag => note.tagIds.includes(tag.id)) }
+    return notes.map((note) => {
+      return {
+        ...note,
+        tags: tags.filter((tag) => note.tagIds.includes(tag.id)),
+      }
     })
   }, [notes, tags])
 
-  function onCreateNote({ tags, ...data }: NoteData) {
-    setNotes(prevNotes => {
+  function onCreateNote({ tags, ...data }) {
+    setNotes((prevNotes) => {
       return [
         ...prevNotes,
-        { ...data, id: uuidV4(), tagIds: tags.map(tag => tag.id) },
+        { ...data, id: uuidV4(), tagIds: tags.map((tag) => tag.id) },
       ]
     })
   }
 
-  function onUpdateNote(id: string, { tags, ...data }: NoteData) {
-    setNotes(prevNotes => {
-      return prevNotes.map(note => {
+  function onUpdateNote(id, { tags, ...data }) {
+    setNotes((prevNotes) => {
+      return prevNotes.map((note) => {
         if (note.id === id) {
-          return { ...note, ...data, tagIds: tags.map(tag => tag.id) }
+          return { ...note, ...data, tagIds: tags.map((tag) => tag.id) }
         } else {
           return note
         }
@@ -67,19 +45,19 @@ function App() {
     })
   }
 
-  function onDeleteNote(id: string) {
-    setNotes(prevNotes => {
-      return prevNotes.filter(note => note.id !== id)
+  function onDeleteNote(id) {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((note) => note.id !== id)
     })
   }
 
-  function addTag(tag: Tag) {
-    setTags(prev => [...prev, tag])
+  function addTag(tag) {
+    setTags((prev) => [...prev, tag])
   }
 
-  function updateTag(id: string, label: string) {
-    setTags(prevTags => {
-      return prevTags.map(tag => {
+  function updateTag(id, label) {
+    setTags((prevTags) => {
+      return prevTags.map((tag) => {
         if (tag.id === id) {
           return { ...tag, label }
         } else {
@@ -89,9 +67,9 @@ function App() {
     })
   }
 
-  function deleteTag(id: string) {
-    setTags(prevTags => {
-      return prevTags.filter(tag => tag.id !== id)
+  function deleteTag(id) {
+    setTags((prevTags) => {
+      return prevTags.filter((tag) => tag.id !== id)
     })
   }
 

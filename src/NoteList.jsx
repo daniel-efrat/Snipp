@@ -1,49 +1,13 @@
 import { useMemo, useState } from "react"
-import {
-  Badge,
-  Card,
-  Col,
-  Form,
-  Modal,
-  Row,
-  Stack,
-} from "react-bootstrap"
+import { Badge, Card, Col, Form, Modal, Row, Stack } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import ReactSelect from "react-select"
-import { Tag } from "./App"
 import "./styles/NoteList.css"
 import ReactMarkdown from "react-markdown"
 import Top from "./Top"
 
-type SimplifiedNote = {
-  tags: Tag[]
-  title: string
-  id: string
-  markdown: string
-}
-
-type NoteListProps = {
-  availableTags: Tag[]
-  notes: SimplifiedNote[]
-  onDeleteTag: (id: string) => void
-  onUpdateTag: (id: string, label: string) => void
-}
-
-type EditTagsModalProps = {
-  show: boolean
-  availableTags: Tag[]
-  handleClose: () => void
-  onDeleteTag: (id: string) => void
-  onUpdateTag: (id: string, label: string) => void
-}
-
-export function NoteList({
-  availableTags,
-  notes,
-  onUpdateTag,
-  onDeleteTag,
-}: NoteListProps) {
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([])
+export function NoteList({ availableTags, notes, onUpdateTag, onDeleteTag }) {
+  const [selectedTags, setSelectedTags] = useState([])
   const [title, setTitle] = useState("")
   const [editTagsModalIsOpen, setEditTagsModalIsOpen] = useState(false)
 
@@ -59,7 +23,6 @@ export function NoteList({
       )
     })
   }, [title, selectedTags, notes])
-
   return (
     <>
       <Row className="mb-4 align-items-center">
@@ -163,7 +126,7 @@ export function NoteList({
   )
 }
 
-function NoteCard({ id, title, tags, markdown }: SimplifiedNote) {
+function NoteCard({ id, title, tags, markdown }) {
   const handleCopyClick = () => {
     navigator.clipboard.writeText(markdown).then(() => {
       console.log("Markdown text copied to clipboard")
@@ -242,12 +205,10 @@ function EditTagsModal({
   show,
   onDeleteTag,
   onUpdateTag,
-}: EditTagsModalProps) {
+}) {
   return (
     <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-       
-      </Modal.Header>
+      <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
         <Form>
           <Stack gap={2}>
@@ -261,7 +222,10 @@ function EditTagsModal({
                   />
                 </Col>
                 <Col xs="auto">
-                  <button onClick={() => onDeleteTag(tag.id)} className="danger">
+                  <button
+                    onClick={() => onDeleteTag(tag.id)}
+                    className="danger"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       height="24"

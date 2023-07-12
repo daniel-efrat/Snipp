@@ -1,12 +1,7 @@
 import React, { useState, useMemo } from "react"
-import "./styles/mm.css"
-interface MMProps {
-  name: string
-  agentName: string
-  caseId: string
-  issue: string
-}
-const MM: React.FC<MMProps> = ({ name, agentName, caseId, issue }) => {
+import "./styles/ff.css"
+
+const FF = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
 
   const snippets = useMemo(
@@ -17,18 +12,18 @@ const MM: React.FC<MMProps> = ({ name, agentName, caseId, issue }) => {
                     היי ${name},
                     כאן ${agentName} מצוות התמיכה של מטא פרו.
                     מספר הפנייה שלך להמשך מעקב: ${caseId}.
-                    אני רואה שאתה פונה אלינו בקשר ל${issue},
+                    אני רואה שאת פונה אלינו בקשר ל${issue},
                     אשמח לבדוק את העניין בשבילך.
                 `,
       },
       {
-        content: "תוכל בבקשה לומר לי מה מספר חשבון המודעות?",
+        content: "תוכלי בבקשה לומר לי מה מספר חשבון המודעות?",
       },
       {
-        content: `תודה ${name}, ברשותך אקח כחמש דקות לבדוק את הפרטים מהצד שלי. מיד חוזר!`,
+        content: `תודה ${name}, ברשותך אקח כחמש דקות לבדוק את הפרטים מהצד שלי. מיד חוזרת!`,
       },
       {
-        content: `תודה על ההמתנה ${name}, האם אתה זמין בטלפון ______?`,
+        content: `תודה על ההמתנה ${name}, האם את זמינה בטלפון ______?`,
       },
     ],
     [name, caseId, issue, agentName]
@@ -37,7 +32,7 @@ const MM: React.FC<MMProps> = ({ name, agentName, caseId, issue }) => {
     snippet.content.toLowerCase().includes(searchText.toLowerCase())
   )
 
-  const copyToClipboard = (content: string) => {
+  const copyToClipboard = (content) => {
     const el = document.createElement("textarea")
     el.value = content
     document.body.appendChild(el)
@@ -63,7 +58,7 @@ const MM: React.FC<MMProps> = ({ name, agentName, caseId, issue }) => {
         {filteredSnippets.map((snippet, index) => (
           <div
             key={index}
-            className="d-flex flex-column w-25 p-2 m-2 text-right min-h-230 boxi"
+            className="d-flex flex-column w-25 p-2 m-2 text-right min-h-230 box"
             style={{ minHeight: "230px", wordWrap: "break-word" }}
           >
             <div className="box-body">
@@ -71,7 +66,7 @@ const MM: React.FC<MMProps> = ({ name, agentName, caseId, issue }) => {
             </div>
             <button
               onClick={() => copyToClipboard(snippet.content)}
-              className="mt-4 copyBtn blueBtn"
+              className="mt-4 copyBtn pinkBtn"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -91,4 +86,4 @@ const MM: React.FC<MMProps> = ({ name, agentName, caseId, issue }) => {
   )
 }
 
-export default MM
+export default FF

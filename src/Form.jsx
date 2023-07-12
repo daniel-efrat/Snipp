@@ -1,24 +1,6 @@
 import { Link } from "react-router-dom"
 
-interface Post {
-  snippet: string
-  tag: string
-}
-interface FormProps {
-  type: string
-  post: Post
-  setPost: React.Dispatch<React.SetStateAction<Post>>
-  submitting: boolean
-  handleSubmit: () => void
-}
-
-const Form: React.FC<FormProps> = ({
-  type,
-  post,
-  setPost,
-  submitting,
-  handleSubmit,
-}) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section className="flex-col w-full max-w-full flex-center">
       <h1 className="text-left head_text">
@@ -61,7 +43,7 @@ const Form: React.FC<FormProps> = ({
         </label>
         <div className="gap-4 mx-3 mb-5 flex-end">
           <Link className="text-sm text-gray-500" to="/">
-           Cancel
+            Cancel
           </Link>
           <button
             type="submit"

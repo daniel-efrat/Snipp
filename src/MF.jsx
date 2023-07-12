@@ -1,12 +1,7 @@
 import React, { useState, useMemo } from "react"
 import "./styles/ff.css"
-interface MFProps {
-  name: string
-  agentName: string
-  caseId: string
-  issue: string
-}
-const MF: React.FC<MFProps> = ({ name, agentName, caseId, issue }) => {
+
+const FF = ({ name, agentName, caseId, issue }) => {
   const [searchText, setSearchText] = useState("")
 
   const snippets = useMemo(
@@ -28,7 +23,7 @@ const MF: React.FC<MFProps> = ({ name, agentName, caseId, issue }) => {
         content: `תודה ${name}, ברשותך אקח כחמש דקות לבדוק את הפרטים מהצד שלי. מיד חוזר!`,
       },
       {
-        content: `תודה על ההמתנה ${name}, האם את זמינה בטלפון _______?`,
+        content: `תודה על ההמתנה ${name}, האם את זמינה בטלפון ______?`,
       },
     ],
     [name, caseId, issue, agentName]
@@ -37,7 +32,7 @@ const MF: React.FC<MFProps> = ({ name, agentName, caseId, issue }) => {
     snippet.content.toLowerCase().includes(searchText.toLowerCase())
   )
 
-  const copyToClipboard = (content: string) => {
+  const copyToClipboard = (content) => {
     const el = document.createElement("textarea")
     el.value = content
     document.body.appendChild(el)
@@ -91,4 +86,4 @@ const MF: React.FC<MFProps> = ({ name, agentName, caseId, issue }) => {
   )
 }
 
-export default MF
+export default FF

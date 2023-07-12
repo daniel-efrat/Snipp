@@ -2,18 +2,11 @@ import React, { FormEvent, useRef, useState, useEffect } from "react"
 import { Col, Form, Row, Stack } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import CreatableReactSelect from "react-select/creatable"
-import { NoteData, Tag } from "./App"
 import { v4 as uuidV4 } from "uuid"
 import Editor from "@toast-ui/editor"
 import "@toast-ui/editor/dist/toastui-editor.css"
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css"
 import "./styles/NoteForm.css"
-
-type NoteFormProps = {
-  onSubmit: (data: NoteData) => void
-  onAddTag: (tag: Tag) => void
-  availableTags: Tag[]
-} & Partial<NoteData>
 
 export function NoteForm({
   onSubmit,
@@ -22,15 +15,15 @@ export function NoteForm({
   title = "",
   markdown = "",
   tags = [],
-}: NoteFormProps) {
-  const titleRef = useRef<HTMLInputElement>(null)
-  const editorRef = useRef<HTMLDivElement>(null)
-  const editorInstance = useRef<Editor | null>(null) // Keep a reference to editor instance
+}) {
+  const titleRef = useRef(null)
+  const editorRef = useRef(null)
+  const editorInstance = useRef(null) // Keep a reference to editor instance
   const navigate = useNavigate()
 
   useEffect(() => {
     editorInstance.current = new Editor({
-      el: editorRef.current!,
+      el: editorRef.current,
       height: "500px",
       initialEditType: "wysiwyg",
       theme: "light",
@@ -43,15 +36,15 @@ export function NoteForm({
     }
   }, [])
 
-  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags)
+  const [selectedTags, setSelectedTags] = useState(tags)
 
-  function handleSubmit(e: FormEvent) {
+  function handleSubmit(e) {
     e.preventDefault()
 
     const markdownContent = editorInstance.current?.getMarkdown() || ""
 
     onSubmit({
-      title: titleRef.current!.value,
+      title: titleRef.current.value,
       markdown: markdownContent,
       tags: selectedTags,
     })
@@ -59,7 +52,7 @@ export function NoteForm({
     navigate("..")
   }
 
-  const toggleDirection = (direction: string) => {
+  const toggleDirection = (direction) => {
     if (editorRef.current) {
       editorRef.current.classList.toggle("rtl", direction === "rtl")
     }
