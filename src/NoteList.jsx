@@ -5,6 +5,9 @@ import ReactSelect from "react-select"
 import "./styles/NoteList.css"
 import ReactMarkdown from "react-markdown"
 import Top from "./Top"
+import Logo from "./assets/quipper-logo.png"
+import USA from "./assets/usa.png"
+import ISR from "./assets/isr.png"
 
 export function NoteList({ availableTags, notes, onUpdateTag, onDeleteTag }) {
   const [selectedTags, setSelectedTags] = useState([])
@@ -27,10 +30,20 @@ export function NoteList({ availableTags, notes, onUpdateTag, onDeleteTag }) {
     <>
       <Row className="mb-4 align-items-center">
         <Col>
-          <h1 className="logo">קְווִיפֶּר</h1>
-          <img src="./assets/quipper-logo.png" alt="" />
+          <img width="200px" src={Logo} alt="" />
+          <h3 className="logo">סְנִיפֶּטְס</h3>
         </Col>
-
+        <Col>
+          
+          <div className="lang">
+            <Link to="/">
+              <img src={ISR} alt="" />
+            </Link>
+            <Link to="https://quipper-en.netlify.app">
+              <img src={USA} alt="" />
+            </Link>
+          </div>
+        </Col>
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
             <Link to="/new">

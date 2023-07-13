@@ -71,7 +71,7 @@ const Top = () => {
               </svg>
             </div>
           </div>
-          <div className="iconsClient mt-3">
+          <div className="mt-3 iconsClient">
             <div
               onClick={clientMale}
               ref={clientMaleBtnRef}
@@ -140,7 +140,7 @@ const Top = () => {
               className="mx-2"
             />
           </div>
-          <div className="caseIssue p-4">
+          <div className="p-4 caseIssue">
             <label htmlFor="issue">סיבת הפנייה: </label>
             <input
               value={issue}
