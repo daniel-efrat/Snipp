@@ -15,6 +15,7 @@ export function NoteForm({
   title = "",
   markdown = "",
   tags = [],
+  isEditing = false, // declare the isEditing prop
 }) {
   const titleRef = useRef(null)
   const editorRef = useRef(null)
@@ -22,19 +23,25 @@ export function NoteForm({
   const navigate = useNavigate()
 
   useEffect(() => {
-    editorInstance.current = new Editor({
+    const options = {
       el: editorRef.current,
       height: "500px",
       initialEditType: "wysiwyg",
       theme: "light",
       previewStyle: "tab",
-    })
+    }
+
+    if (isEditing) {
+      options.initialValue = markdown
+    }
+
+    editorInstance.current = new Editor(options)
 
     return () => {
       // destroy editor instance to avoid memory leak
       editorInstance.current?.destroy()
     }
-  }, [])
+  }, [isEditing, markdown])
 
   const [selectedTags, setSelectedTags] = useState(tags)
 
